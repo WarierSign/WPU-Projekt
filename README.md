@@ -1,2 +1,16 @@
 # WPU-Endprojekt Klasse 9
 # Von Aaron und David
+
+> [!NOTE]
+>Input:
+>- Temperatur (Raumtemperatur messen)
+>- Joystick (Controller)
+>- Buttons (Controller)
+>- Light Sensor (Licht an/aus)
+>
+>Output:
+>- SevSeg (Display)
+>- 2x27 LCD (Display)
+>- LED (Status)
+>- Bluetooth (ESP32 inbuild)
+>- WiFi for Matter (ESP32 inbuild)
