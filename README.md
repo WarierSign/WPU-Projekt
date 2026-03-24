@@ -1,1 +1,2 @@
-# WPU-Endprojekt Klasse 9 von David und Aaron
+# WPU-Endprojekt Klasse 9
+# Von Aaron und David
