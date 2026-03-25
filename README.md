@@ -20,3 +20,7 @@
 >- [ ] Home Assistant Support
 >- [ ] ESP32 Code
 >- [ ] Webbase Code for ESP32
+
+```
+git clone https://github.com/wariersign/wpu-projekt.git
+```
