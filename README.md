@@ -1,4 +1,4 @@
-## WPU-Endprojekt Klasse 9
+## WPU-Projekt Klasse 9
 ### Von Aaron und David
 
 > [!NOTE]
