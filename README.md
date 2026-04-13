@@ -29,9 +29,13 @@ git clone https://github.com/wariersign/wpu-projekt.git
 ```
 
 ### Pins
-Tempereratursensor = A0
-
-
-Licht = 3
-
-Lüfter = 5
+> [!NOTE]
+>Tempereratursensor = A0
+>Bewegungsmelder = 
+>Lichtschalter = 2
+>Pizo = 6
+>
+>Licht = 3
+>
+>Lüfter = 5
+>
