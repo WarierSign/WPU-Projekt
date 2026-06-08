@@ -1,56 +1,28 @@
-//-------------------------------//
-//WPU Projekt von Aaron und David//
-//-------------------------------//
-
-
-//Sensorpins
-int Temperatursensor = A0;
-int Lichtschalter = 4;
-int Licht = 7;
-int Piezzo = 8;
-int Luefter = 5;
-
-//Bluetooth Modul Pins
-int RXDPin = 2;
-int TXDPin = 3;
-
-
-
-
-
 void setup() {
   Serial.begin(9600);
 
-  //Pins festlegen
   pinMode(Piezzo, OUTPUT);
   pinMode(Lichtschalter, INPUT_PULLUP);
   pinMode(Luefter, OUTPUT);
 
-  //setup Klasssen
   SetupMonitor();
   BluetoothInit();
-  //SetupAirQuality(//weiß net welchen pin);
+  SetupAirQuality(AirQualityPin);
   SetupHouseLight(Licht);
   SetupTemperature(Temperatursensor);
 
-  //einmal clearen weil why not
-  ErraseMonitor();
+  EraseMonitor();
 }
 
 void loop() {
-
   Temperatursystem();
-
   Lichtsystem();
-
-  Feuerarlam();
-
+  Feueralarm();
   Lueftersystem();
 
+  EraseMonitor();
+  WriteOnMonitor("Temp: " + String(temperatur) + " C", 0);
+  WriteOnMonitor("Luft: " + GetAirQuality(AirQualityPin), 1);
 
-  //LCD
-  WriteOnMonitor(String(temperatur));
-
-  delay(500); //Hat Arduino crashes verursacht
+  delay(TemperaturUpdateDelay);
 }
-
