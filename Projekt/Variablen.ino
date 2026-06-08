@@ -1,21 +1,29 @@
-//-------------------------------//
-//WPU Projekt von Aaron und David//
-//-------------------------------//
+int Temperatursensor = A0;
+int AirQualityPin = A1;
+int RXDPin = 2;
+int TXDPin = 3;
+int Lichtschalter = 4;
+int Luefter = 5;
+int Licht = 7;
+int Piezzo = 8;
 
-
-//Sensorwerte
 int RohOuputTemperatur = 0;
 int temperatur;
 int tasterstatus = 0;
+int letzterTasterstatus = HIGH;
 int AirQualityData;
-
-//Zeiten
 int TemperaturUpdateDelay = 500;
 
-//Andere Variablien
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 int Feuertemp = 25;
 int Lueftertemp = 20;
-bool Lichtstatus = false; //Hinzufügen von "= false"
-bool Feuer = false; //gerade kein Feuer hoffentlich
+
+bool Lichtstatus = false;
+bool Feuer = false;
 bool Luefterstatus = false;
+
+SoftwareSerial bleSerial(RXDPin, TXDPin);
+int BleOutput;
+int BleInput;
+
+Thermistor* thermistor;
