@@ -1,18 +1,9 @@
 void Lueftersystem() {
-  if(temperatur >= Lueftertemp) {
+  if (temperatur >= Lueftertemp) {
+    digitalWrite(Luefter, HIGH);
     Luefterstatus = true;
   } else {
+    digitalWrite(Luefter, LOW);
     Luefterstatus = false;
   }
-
-
-
-  if(Luefterstatus == true) {
-    Serial.print("Lüfter aktiv");
-    digitalWrite(Luefter, HIGH);
-  }
-  else {
-    Serial.print("Lüfter deaktiv");
-    digitalWrite(Luefter, LOW);
-  }
-}y
+}
