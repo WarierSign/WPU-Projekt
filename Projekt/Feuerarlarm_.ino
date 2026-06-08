@@ -1,18 +1,13 @@
-void Feuerarlam() {
-  if(temperatur >= Feuertemp) {
-    Feuer = true;
-  } else {
-    Feuer = false;
-  }
-
+void Feueralarm() {
+  Feuer = (temperatur >= Feuertemp);
+  
   Serial.print(Feuer);
 
-  if(Feuer == true) {
+  if (Feuer) {
     digitalWrite(Piezzo, HIGH);
-    Serial.print("Feuer an");
-  }
-  else {
-    Serial.print("Feuer aus");
+    Serial.println(" - Feuer an");
+  } else {
+    Serial.println(" - Feuer aus");
     digitalWrite(Piezzo, LOW);
   }
 }
