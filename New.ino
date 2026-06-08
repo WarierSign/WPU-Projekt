@@ -3,6 +3,7 @@
 #include <Thermistor.h>
 #include <NTC_Thermistor.h>
 #include <SoftwareSerial.h>
+#include <string.h>
 
 int Temperatursensor = A0;
 int AirQualityPin = A1;
@@ -29,7 +30,7 @@ bool Feuer = false;
 bool Luefterstatus = false;
 
 SoftwareSerial bleSerial(RXDPin, TXDPin);
-int BleOutput;
+char BleOutput;
 int BleInput;
 
 Thermistor* thermistor;
@@ -114,14 +115,14 @@ void BluetoothInit() {
 
 void BluetoothCheck() {
   if (!bleSerial.available()) {
-    Serial.println("Bluetooth Gerät nicht verbunden");
-    Serial.println("Warten auf Koppelung");
-    delay(1000);
-    Serial.print("Nach Gerät suchen");
+    //Serial.println("Bluetooth Gerät nicht verbunden");
+    //Serial.println("Warten auf Koppelung");
+    //delay(1000);
+    //Serial.print("Nach Gerät suchen");
 
     while (!bleSerial.available()) {
-      Serial.print(".");
-      delay(1000);
+      //Serial.print(".");
+      //delay(1000);
     }
   }
 }
@@ -178,7 +179,7 @@ void setup() {
 void loop() {
   Temperatursystem();
   Lichtsystem();
-  Feueralarm();
+  //Feueralarm();
   Lueftersystem();
 
   EraseMonitor();
@@ -186,4 +187,8 @@ void loop() {
   WriteOnMonitor("Luft: " + GetAirQuality(AirQualityPin), 1);
 
   delay(TemperaturUpdateDelay);
+
+  BluetoothGet();
+  delay(150);
+  Serial.println(BleOutput);
 }
