@@ -1,14 +1,9 @@
-//-------------------------------//
-//WPU Projekt von Aaron und David//
-//-------------------------------//
-
-
-void SetupAirQuality(int Pin) {
-  pinMode(Pin, INPUT);
+void SetupAirQuality(int pin) {
+  pinMode(pin, INPUT);
 }
 
-String GetAirQuality() {
-  AirQualityData = analogRead(Pin);
+String GetAirQuality(int pin) {
+  AirQualityData = analogRead(pin);
 
   if (AirQualityData < 80) {
     return "Extrem schlecht";
