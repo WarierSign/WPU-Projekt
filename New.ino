@@ -7,15 +7,15 @@
 
 int Temperatursensor = A0;
 int AirQualityPin = A1;
-int RXDPin = 2;
-int TXDPin = 3;
+//int RXDPin = 2;
+//int TXDPin = 3;
 int Lichtschalter = 4;
 int Luefter = 5;
 int Licht = 7;
 int Piezzo = 8;
 
 int RohOuputTemperatur = 0;
-int temperatur;
+float temperatur;
 int tasterstatus = 0;
 int letzterTasterstatus = HIGH;
 int AirQualityData;
@@ -29,9 +29,9 @@ bool Lichtstatus = false;
 bool Feuer = false;
 bool Luefterstatus = false;
 
-SoftwareSerial bleSerial(RXDPin, TXDPin);
-char BleOutput;
-int BleInput;
+//SoftwareSerial bleSerial(RXDPin, TXDPin);
+//char BleOutput;
+//int BleInput;
 
 Thermistor* thermistor;
 
@@ -108,34 +108,35 @@ void Feueralarm() {
   }
 }
 
-void BluetoothInit() {
-  while (!Serial) {}
-  bleSerial.begin(9600);
-}
+//void BluetoothInit() {
+//  while (!Serial) {}
+//  bleSerial.begin(9600);
+//}
 
-void BluetoothCheck() {
-  if (!bleSerial.available()) {
+//void BluetoothCheck() {
+//  if (!bleSerial.available()) {
     //Serial.println("Bluetooth Gerät nicht verbunden");
     //Serial.println("Warten auf Koppelung");
     //delay(1000);
     //Serial.print("Nach Gerät suchen");
 
-    while (!bleSerial.available()) {
+//    while (!bleSerial.available()) {
       //Serial.print(".");
       //delay(1000);
-    }
-  }
-}
+//    }
+//  }
+//}
 
-void BluetoothGet() {
-  BluetoothCheck();
-  BleOutput = bleSerial.read();
-}
+//void BluetoothGet() {
+//  BluetoothCheck();
+//  BleOutput = bleSerial.read();
+//}
 
-void BluetoothSend() {
-  BluetoothCheck();
-  bleSerial.write(BleInput);
-}
+//void BluetoothSend() {
+//  BluetoothCheck();
+//  bleSerial.write(BleInput);
+//}
+
 void SetupAirQuality(int pin) {
   pinMode(pin, INPUT);
 }
