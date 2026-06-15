@@ -2,12 +2,12 @@
 #include <LiquidCrystal_I2C.h>
 #include <Thermistor.h>
 #include <NTC_Thermistor.h>
-//#include <SoftwareSerial.h>
+#include <SoftwareSerial.h>
 
 int Temperatursensor = A0;
 int AirQualityPin = A1;
-//int RXDPin = 2;
-//int TXDPin = 3;
+int RXDPin = 2;
+int TXDPin = 3;
 int Lichtschalter = 4;
 int Luefter = 5;
 int Licht = 7;
@@ -28,9 +28,9 @@ bool Lichtstatus = false;
 bool Feuer = false;
 bool Luefterstatus = false;
 
-//SoftwareSerial bleSerial(RXDPin, TXDPin);
-//char BleOutput;
-//int BleInput;
+SoftwareSerial bleSerial(RXDPin, TXDPin);
+char BleToClient;
+int BleFromClient;
 
 Thermistor* thermistor;
 
@@ -97,14 +97,16 @@ void SetupHouseLight(int pin) {
 
 void Feueralarm() {
   Feuer = (temperatur >= Feuertemp);
+
+  Serial.print("Feuer Status: ");
+  Serial.println(Feuer);
   
-  Serial.print(Feuer);
 
   if (Feuer) {
     digitalWrite(Piezzo, HIGH);
-    Serial.println(" - Feuer an");
+    //Serial.println("Feuer!");
   } else {
-    Serial.println(" - Feuer aus");
+    //Serial.println(" - Feuer aus");
     digitalWrite(Piezzo, LOW);
   }
 }
@@ -181,7 +183,7 @@ void setup() {
 void loop() {
   Temperatursystem();
   Lichtsystem();
-  //Feueralarm();
+  Feueralarm();
   Lueftersystem();
 
   EraseMonitor();
@@ -191,6 +193,6 @@ void loop() {
   delay(TemperaturUpdateDelay);
 
   //BluetoothGet();
-  delay(150);
+  //delay(150);
   //Serial.println(BleOutput);
 }
