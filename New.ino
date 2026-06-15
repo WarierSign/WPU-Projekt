@@ -2,8 +2,7 @@
 #include <LiquidCrystal_I2C.h>
 #include <Thermistor.h>
 #include <NTC_Thermistor.h>
-#include <SoftwareSerial.h>
-#include <string.h>
+//#include <SoftwareSerial.h>
 
 int Temperatursensor = A0;
 int AirQualityPin = A1;
@@ -73,6 +72,12 @@ void Lueftersystem() {
   }
 }
 
+void ToggleLight(int pin) {
+  Lichtstatus = !Lichtstatus;
+  digitalWrite(pin, Lichtstatus ? HIGH : LOW);
+}
+
+
 void Lichtsystem() {
   tasterstatus = digitalRead(Lichtschalter);
 
@@ -89,10 +94,6 @@ void SetupHouseLight(int pin) {
   digitalWrite(pin, LOW);
 }
 
-void ToggleLight(int pin) {
-  Lichtstatus = !Lichtstatus;
-  digitalWrite(pin, Lichtstatus ? HIGH : LOW);
-}
 
 void Feueralarm() {
   Feuer = (temperatur >= Feuertemp);
@@ -169,7 +170,7 @@ void setup() {
   pinMode(Luefter, OUTPUT);
 
   SetupMonitor();
-  BluetoothInit();
+  //BluetoothInit();
   SetupAirQuality(AirQualityPin);
   SetupHouseLight(Licht);
   SetupTemperature(Temperatursensor);
@@ -189,7 +190,7 @@ void loop() {
 
   delay(TemperaturUpdateDelay);
 
-  BluetoothGet();
+  //BluetoothGet();
   delay(150);
-  Serial.println(BleOutput);
+  //Serial.println(BleOutput);
 }
